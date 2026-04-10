@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 10: Learning — AI Study Guide</title>
+  <meta name="description" content="A comprehensive, interactive study guide for Chapter 10: Learning — covering Machine Learning paradigms, methods, and models from supervised to ensemble learning." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── PARTICLES BACKGROUND ── -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ── TOP NAV ── -->
+  <nav class="topnav" id="topnav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#hero">
+        <span class="brand-icon">🧠</span>
+        <span>AI Chapter 10</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#intro" class="nav-link">Intro</a></li>
+        <li><a href="#paradigms" class="nav-link">Paradigms</a></li>
+        <li><a href="#methods" class="nav-link">Methods</a></li>
+        <li><a href="#comparison" class="nav-link">Comparison</a></li>
+        <li><a href="#applications" class="nav-link">Applications</a></li>
+        <li><a href="#mpi" class="nav-link">MPI</a></li>
+        <li><a href="#quiz" class="nav-link nav-cta">Self-Test ✨</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── PROGRESS BAR ── -->
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!--  HERO                                      -->
+  <!-- ══════════════════════════════════════════ -->
+  <header class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">📘 Artificial Intelligence · Chapter 10</div>
+      <h1 class="hero-title">
+        <span class="gradient-text">Machine Learning</span>
+        <br />A Complete Study Guide
+      </h1>
+      <p class="hero-subtitle">
+        From Rote Memorization to Complex Intelligence — everything you need to ace your seminar on <strong>Sections 10.1 – 10.3.8</strong>.
+      </p>
+      <div class="hero-buttons">
+        <a href="#toc" class="btn btn-primary">📑 Table of Contents</a>
+        <a href="#intro" class="btn btn-ghost">Start Reading →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">8</span><span class="stat-label">Learning Methods</span></div>
+        <div class="stat"><span class="stat-num">3</span><span class="stat-label">Real-World Examples</span></div>
+        <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Key Definitions</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="neural-net" id="neural-net"></div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  TABLE OF CONTENTS                         -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="toc-section" id="toc">
+      <div class="container">
+        <div class="section-label">Navigation</div>
+        <h2 class="section-title">Table of Contents</h2>
+        <div class="toc-grid">
+          <a href="#intro" class="toc-card">
+            <span class="toc-num">10.1</span>
+            <span class="toc-title">Introduction to Machine Learning</span>
+            <span class="toc-arrow">→</span>
+          </a>
+          <a href="#paradigms" class="toc-card">
+            <span class="toc-num">10.2</span>
+            <span class="toc-title">Learning Paradigms</span>
+            <span class="toc-arrow">→</span>
+          </a>
+          <a href="#methods" class="toc-card">
+            <span class="toc-num">10.3</span>
+            <span class="toc-title">Learning Concepts, Methods &amp; Models</span>
+            <span class="toc-arrow">→</span>
+          </a>
+          <a href="#rote" class="toc-card toc-sub">
+            <span class="toc-num">10.3.1</span>
+            <span class="toc-title">Rote Learning</span>
+            <span class="toc-arrow">→</span>
+          </a>
+          <a href="#observations" class="toc-card toc-sub">
+            <span class="toc-num">10.3.2</span>
+            <span class="toc-title">Learning from Observations</span>
+            <span class="toc-arrow">→</span>
+          </a>
+          <a href="#supervised" class="toc-card toc-sub">
+            <span class="toc-num">10.3.3</span>
+            <span class="toc-title">Supervised Learning</span>
+            <span class="toc-arrow">→</span>
+          </a>
+          <a href="#unsupervised" class="toc-card toc-sub">
+            <span class="toc-num">10.3.4</span>
+            <span class="toc-title">Unsupervised Learning</span>
+            <span class="toc-arrow">→</span>
+          </a>
+          <a href="#semisupervised" class="toc-card toc-sub">
+            <span class="toc-num">10.3.5</span>
+            <span class="toc-title">Semi-supervised Learning</span>
+            <span class="toc-arrow">→</span>
+          </a>
+          <a href="#ensemble" class="toc-card toc-sub">
+            <span class="toc-num">10.3.6</span>
+            <span class="toc-title">Ensemble Learning</span>
+            <span class="toc-arrow">→</span>
+          </a>
+          <a href="#discovery" class="toc-card toc-sub">
+            <span class="toc-num">10.3.7</span>
+            <span class="toc-title">Discovery-based Learning</span>
+            <span class="toc-arrow">→</span>
+          </a>
+          <a href="#problem-solving" class="toc-card toc-sub">
+            <span class="toc-num">10.3.8</span>
+            <span class="toc-title">Learning by Problem Solving</span>
+            <span class="toc-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  10.1  INTRODUCTION                        -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="content-section" id="intro">
+      <div class="container">
+        <div class="section-label">Section 10.1</div>
+        <h2 class="section-title">Introduction to <span class="gradient-text">Machine Learning</span></h2>
+
+        <div class="callout callout-def">
+          <div class="callout-icon">📖</div>
+          <div class="callout-body">
+            <strong>Definition — Machine Learning (ML):</strong>
+            The field concerned with algorithms that improve their <em>performance</em> at a given task through <em>experience</em>. An ML agent gets better the more data it processes, without being explicitly reprogrammed.
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="info-card">
+            <div class="card-icon">🎯</div>
+            <h3>Goals of Machine Learning</h3>
+            <ul>
+              <li>Improve the <strong>performance</strong> of an intelligent agent over time</li>
+              <li>Enable agents to <strong>adapt</strong> to new, unseen scenarios</li>
+              <li>Automate complex decision-making without hand-coding every rule</li>
+              <li>Extract actionable knowledge from <strong>raw data</strong></li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <div class="card-icon">⚠️</div>
+            <h3>Core Challenges</h3>
+            <ul>
+              <li>Handling <strong>large, dynamic datasets</strong> that shift over time</li>
+              <li>Identifying <strong>relevant features</strong> amid noise and irrelevant data</li>
+              <li>Avoiding <strong>overfitting</strong> — learning the noise, not the signal</li>
+              <li>Scaling algorithms to <strong>real-world complexity</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="concept-block">
+          <h3>Concept &amp; Scope of ML</h3>
+          <p>Machine Learning sits at the intersection of computer science, statistics, and domain knowledge. Its scope spans from simple linear models to deep neural networks — covering <strong>perception</strong> (recognising images, speech), <strong>prediction</strong> (credit scores, demand forecasting), and <strong>decision-making</strong> (game-playing agents, robotics).</p>
+          <div class="scope-diagram">
+            <div class="scope-ring scope-ring-3">Real-World AI Applications</div>
+            <div class="scope-ring scope-ring-2">Machine Learning Algorithms</div>
+            <div class="scope-ring scope-ring-1">Core: Data + Experience</div>
+          </div>
+        </div>
+
+        <div class="callout callout-tip">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
+            <strong>Pro-Tip:</strong> Think of ML as a <em>feedback loop</em>. The agent observes data → makes a prediction → receives feedback → updates its internal model. Over thousands of cycles, even a simple algorithm can achieve superhuman performance.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  10.2  PARADIGMS                           -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="content-section alt-bg" id="paradigms">
+      <div class="container">
+        <div class="section-label">Section 10.2</div>
+        <h2 class="section-title">Learning <span class="gradient-text">Paradigms</span></h2>
+        <p class="section-intro">Intelligence is not monolithic. A truly intelligent agent must <strong>learn</strong>, <strong>search</strong>, and <strong>problem-solve</strong> — often simultaneously. These three pillars form the backbone of intelligent behaviour.</p>
+
+        <div class="paradigm-grid">
+          <div class="paradigm-card paradigm-learn">
+            <div class="paradigm-icon">📚</div>
+            <h3>Learning</h3>
+            <p>Acquiring new knowledge or skills from experience — through examples, feedback, or exploration of the environment.</p>
+            <div class="paradigm-tag">Core Paradigm</div>
+          </div>
+          <div class="paradigm-card paradigm-search">
+            <div class="paradigm-icon">🔍</div>
+            <h3>Searching</h3>
+            <p>Exploring a space of possible states or solutions to find the optimal path — from A* to Monte Carlo Tree Search.</p>
+            <div class="paradigm-tag">Core Paradigm</div>
+          </div>
+          <div class="paradigm-card paradigm-solve">
+            <div class="paradigm-icon">🧩</div>
+            <h3>Problem Solving</h3>
+            <p>Formulating goals and executing action sequences to reach them — blending planning, reasoning, and learned heuristics.</p>
+            <div class="paradigm-tag">Core Paradigm</div>
+          </div>
+        </div>
+
+        <div class="callout callout-note">
+          <div class="callout-icon">🔗</div>
+          <div class="callout-body">
+            <strong>Key Insight:</strong> These paradigms are <em>interdependent</em>. Learning improves search efficiency; better search unlocks harder problem-solving; solving problems yields new training data that fuels further learning. This cycle is what drives modern AI breakthroughs like AlphaZero.
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Observation Phase</h4>
+              <p>The agent passively collects data from the environment — sensor readings, user behaviour, game moves.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Induction Phase</h4>
+              <p>Patterns are extracted from the raw data and distilled into a generalisable internal model or rule set.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Inference/Action Phase</h4>
+              <p>The trained model is applied to new inputs — making predictions, taking actions, or solving novel tasks.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Feedback &amp; Adaptation</h4>
+              <p>The outcome is evaluated; the model is updated to correct errors and reinforce successful strategies.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  10.3  METHODS HEADER                      -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="content-section" id="methods">
+      <div class="container">
+        <div class="section-label">Section 10.3</div>
+        <h2 class="section-title">Learning Concepts, <span class="gradient-text">Methods &amp; Models</span></h2>
+        <p class="section-intro">Machine learning encompasses a rich family of algorithms, each suited to different data types, task goals, and feedback mechanisms. Below we explore each method in depth.</p>
+        <div class="methods-overview">
+          <div class="method-chip" onclick="document.getElementById('rote').scrollIntoView({behavior:'smooth'})">🗃️ Rote</div>
+          <div class="method-chip" onclick="document.getElementById('observations').scrollIntoView({behavior:'smooth'})">👁️ Observations</div>
+          <div class="method-chip" onclick="document.getElementById('supervised').scrollIntoView({behavior:'smooth'})">🏷️ Supervised</div>
+          <div class="method-chip" onclick="document.getElementById('unsupervised').scrollIntoView({behavior:'smooth'})">🔓 Unsupervised</div>
+          <div class="method-chip" onclick="document.getElementById('semisupervised').scrollIntoView({behavior:'smooth'})">⚖️ Semi-supervised</div>
+          <div class="method-chip" onclick="document.getElementById('ensemble').scrollIntoView({behavior:'smooth'})">🎭 Ensemble</div>
+          <div class="method-chip" onclick="document.getElementById('discovery').scrollIntoView({behavior:'smooth'})">⛏️ Discovery</div>
+          <div class="method-chip" onclick="document.getElementById('problem-solving').scrollIntoView({behavior:'smooth'})">🧩 Problem Solving</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 10.3.1 ROTE LEARNING ── -->
+    <section class="method-section" id="rote">
+      <div class="container">
+        <div class="method-header">
+          <div class="method-badge method-badge-1">10.3.1</div>
+          <div>
+            <h2>Rote Learning</h2>
+            <p class="method-tagline">Learning through direct memorisation</p>
+          </div>
+        </div>
+
+        <div class="method-body">
+          <div class="method-main">
+            <div class="callout callout-def">
+              <div class="callout-icon">📖</div>
+              <div class="callout-body">
+                <strong>Definition:</strong> Rote Learning is the simplest form of machine learning — the direct storage of input-output pairs in memory, retrieved verbatim when an identical input is encountered again. <em>No generalisation occurs.</em>
+              </div>
+            </div>
+
+            <h3>How It Works</h3>
+            <p>An agent stores every experienced situation and its corresponding optimal action in a lookup table. When the same situation recurs, the stored answer is returned instantly without any recomputation.</p>
+
+            <div class="process-flow">
+              <div class="pf-step"><div class="pf-icon">📥</div><div class="pf-label">Input Data</div></div>
+              <div class="pf-arrow">→</div>
+              <div class="pf-step"><div class="pf-icon">🗃️</div><div class="pf-label">Store in Memory</div></div>
+              <div class="pf-arrow">→</div>
+              <div class="pf-step"><div class="pf-icon">🔍</div><div class="pf-label">Exact Match Lookup</div></div>
+              <div class="pf-arrow">→</div>
+              <div class="pf-step"><div class="pf-icon">📤</div><div class="pf-label">Retrieve &amp; Return</div></div>
+            </div>
+
+            <h3>Characteristics</h3>
+            <ul class="feature-list">
+              <li><span class="badge badge-green">✔ Strength</span> Perfect recall for previously seen inputs</li>
+              <li><span class="badge badge-green">✔ Strength</span> Zero recomputation cost at inference time</li>
+              <li><span class="badge badge-red">✘ Weakness</span> Cannot generalise to <em>unseen</em> situations</li>
+              <li><span class="badge badge-red">✘ Weakness</span> Memory grows linearly with experience</li>
+              <li><span class="badge badge-red">✘ Weakness</span> Fails when data is dynamic or context-dependent</li>
+            </ul>
+
+            <div class="callout callout-example">
+              <div class="callout-icon">🌍</div>
+              <div class="callout-body">
+                <strong>Real-World Example:</strong> A chess engine precomputing and caching every opening move sequence. When an opponent plays exactly that sequence, the engine retrieves the optimal response in O(1) time — but if the opponent deviates, the engine must fall back to search.
+              </div>
+            </div>
+          </div>
+          <div class="method-sidebar">
+            <div class="sidebar-card">
+              <h4>Quick Facts</h4>
+              <dl>
+                <dt>Also known as</dt><dd>Look-up Table Learning</dd>
+                <dt>Data Required</dt><dd>Input-Output Pairs</dd>
+                <dt>Generalisation</dt><dd>❌ None</dd>
+                <dt>Feedback</dt><dd>Not required</dd>
+                <dt>Classic use</dt><dd>Opening Book (Chess)</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 10.3.2 FROM OBSERVATIONS ── -->
+    <section class="method-section alt-bg" id="observations">
+      <div class="container">
+        <div class="method-header">
+          <div class="method-badge method-badge-2">10.3.2</div>
+          <div>
+            <h2>Learning from Observations</h2>
+            <p class="method-tagline">Extracting patterns from recorded facts</p>
+          </div>
+        </div>
+
+        <div class="method-body">
+          <div class="method-main">
+            <div class="callout callout-def">
+              <div class="callout-icon">📖</div>
+              <div class="callout-body">
+                <strong>Definition:</strong> The agent observes the environment, records facts (observations), and extracts general patterns or rules from the accumulated record — without a teacher providing explicit correct answers.
+              </div>
+            </div>
+
+            <h3>The Observation Cycle</h3>
+            <div class="cycle-diagram">
+              <div class="cycle-step">
+                <div class="cycle-circle">Observe</div>
+                <div class="cycle-line"></div>
+              </div>
+              <div class="cycle-step">
+                <div class="cycle-circle">Record</div>
+                <div class="cycle-line"></div>
+              </div>
+              <div class="cycle-step">
+                <div class="cycle-circle">Analyse</div>
+                <div class="cycle-line"></div>
+              </div>
+              <div class="cycle-step">
+                <div class="cycle-circle">Generalise</div>
+                <div class="cycle-line"></div>
+              </div>
+              <div class="cycle-step">
+                <div class="cycle-circle">Predict</div>
+              </div>
+            </div>
+
+            <h3>Key Principles</h3>
+            <ul class="feature-list">
+              <li><span class="badge badge-blue">ℹ</span> Observations are recorded as a set of <strong>attribute-value pairs</strong></li>
+              <li><span class="badge badge-blue">ℹ</span> Patterns are discovered via <strong>inductive reasoning</strong></li>
+              <li><span class="badge badge-blue">ℹ</span> No explicit target label is provided during observation</li>
+              <li><span class="badge badge-blue">ℹ</span> Works well for <strong>time-series</strong> and <strong>sensor data</strong></li>
+            </ul>
+
+            <div class="callout callout-tip">
+              <div class="callout-icon">💡</div>
+              <div class="callout-body">
+                <strong>Pro-Tip:</strong> Learning from observations is the computational equivalent of a scientist formulating a hypothesis. The quality of learning depends heavily on the <em>richness</em> and <em>representativeness</em> of the observations collected.
+              </div>
+            </div>
+          </div>
+          <div class="method-sidebar">
+            <div class="sidebar-card">
+              <h4>Quick Facts</h4>
+              <dl>
+                <dt>Also known as</dt><dd>Inductive Learning</dd>
+                <dt>Data Required</dt><dd>Unlabeled observations</dd>
+                <dt>Generalisation</dt><dd>✅ Yes</dd>
+                <dt>Feedback</dt><dd>Implicit (environment)</dd>
+                <dt>Classic use</dt><dd>Scientific discovery systems</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 10.3.3 SUPERVISED ── -->
+    <section class="method-section" id="supervised">
+      <div class="container">
+        <div class="method-header">
+          <div class="method-badge method-badge-3">10.3.3</div>
+          <div>
+            <h2>Supervised Learning</h2>
+            <p class="method-tagline">Learning with labeled data and explicit feedback</p>
+          </div>
+        </div>
+
+        <div class="method-body">
+          <div class="method-main">
+            <div class="callout callout-def">
+              <div class="callout-icon">📖</div>
+              <div class="callout-body">
+                <strong>Definition:</strong> The learning algorithm is trained on a <em>labeled dataset</em> — each example consists of an input and a corresponding correct output. The model learns a mapping <code>f(X) → Y</code> that generalises to unseen inputs.
+              </div>
+            </div>
+
+            <div class="sl-tabs">
+              <button class="sl-tab active" data-tab="classify" id="tab-classify">Classification</button>
+              <button class="sl-tab" data-tab="regress" id="tab-regress">Regression</button>
+            </div>
+            <div class="sl-tab-content" id="tab-content-classify">
+              <h4>Classification</h4>
+              <p>Predicts a <strong>discrete label</strong> from a finite set of classes.</p>
+              <ul>
+                <li>📧 Spam vs. Not-Spam email detection</li>
+                <li>🩺 Disease diagnosis (positive / negative)</li>
+                <li>💳 Credit default prediction (default / no default)</li>
+              </ul>
+              <p><strong>Common Algorithms:</strong> Decision Trees, Naive Bayes, SVM, Logistic Regression, k-NN</p>
+            </div>
+            <div class="sl-tab-content hidden" id="tab-content-regress">
+              <h4>Regression</h4>
+              <p>Predicts a <strong>continuous numerical value</strong>.</p>
+              <ul>
+                <li>🏠 House price prediction</li>
+                <li>📈 Stock price forecasting</li>
+                <li>🌡️ Temperature prediction</li>
+              </ul>
+              <p><strong>Common Algorithms:</strong> Linear Regression, Polynomial Regression, Ridge, Neural Networks</p>
+            </div>
+
+            <h3>The Supervised Learning Pipeline</h3>
+            <div class="pipeline">
+              <div class="pipe-step"><span class="pipe-num">1</span><span>Collect &amp; Label Data</span></div>
+              <div class="pipe-arrow">▶</div>
+              <div class="pipe-step"><span class="pipe-num">2</span><span>Train Model</span></div>
+              <div class="pipe-arrow">▶</div>
+              <div class="pipe-step"><span class="pipe-num">3</span><span>Validate &amp; Tune</span></div>
+              <div class="pipe-arrow">▶</div>
+              <div class="pipe-step"><span class="pipe-num">4</span><span>Test on Held-out Data</span></div>
+              <div class="pipe-arrow">▶</div>
+              <div class="pipe-step"><span class="pipe-num">5</span><span>Deploy</span></div>
+            </div>
+          </div>
+          <div class="method-sidebar">
+            <div class="sidebar-card">
+              <h4>Quick Facts</h4>
+              <dl>
+                <dt>Data Required</dt><dd>Labeled pairs (X, Y)</dd>
+                <dt>Generalisation</dt><dd>✅ Yes</dd>
+                <dt>Feedback</dt><dd>Explicit correct labels</dd>
+                <dt>Tasks</dt><dd>Classification, Regression</dd>
+                <dt>Classic use</dt><dd>Image recognition, NLP</dd>
+              </dl>
+            </div>
+            <div class="sidebar-card sidebar-warn">
+              <h4>⚠️ Watch out for…</h4>
+              <ul>
+                <li><strong>Overfitting</strong> — model memorises training data</li>
+                <li><strong>Label noise</strong> — incorrect training labels</li>
+                <li><strong>Data imbalance</strong> — rare classes underlearned</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 10.3.4 UNSUPERVISED ── -->
+    <section class="method-section alt-bg" id="unsupervised">
+      <div class="container">
+        <div class="method-header">
+          <div class="method-badge method-badge-4">10.3.4</div>
+          <div>
+            <h2>Unsupervised Learning</h2>
+            <p class="method-tagline">Finding hidden structure without labels</p>
+          </div>
+        </div>
+
+        <div class="method-body">
+          <div class="method-main">
+            <div class="callout callout-def">
+              <div class="callout-icon">📖</div>
+              <div class="callout-body">
+                <strong>Definition:</strong> The algorithm is presented with <em>unlabeled data</em> and must discover hidden structure, patterns, or compressed representations on its own — without any notion of a "correct" answer.
+              </div>
+            </div>
+
+            <div class="un-tasks">
+              <div class="un-task">
+                <div class="un-icon">🪣</div>
+                <h4>Clustering</h4>
+                <p>Group similar data points together. e.g. k-Means, DBSCAN, Hierarchical Clustering.</p>
+              </div>
+              <div class="un-task">
+                <div class="un-icon">📉</div>
+                <h4>Dimensionality Reduction</h4>
+                <p>Compress high-dimensional data while preserving structure. e.g. PCA, t-SNE, Autoencoders.</p>
+              </div>
+              <div class="un-task">
+                <div class="un-icon">🔗</div>
+                <h4>Association Rule Mining</h4>
+                <p>Discover co-occurrence rules in transactional data. e.g. Apriori algorithm, market basket analysis.</p>
+              </div>
+              <div class="un-task">
+                <div class="un-icon">🎨</div>
+                <h4>Generative Modelling</h4>
+                <p>Learn the data distribution to generate new samples. e.g. GANs, Variational Autoencoders.</p>
+              </div>
+            </div>
+
+            <div class="callout callout-tip">
+              <div class="callout-icon">💡</div>
+              <div class="callout-body">
+                <strong>Pro-Tip:</strong> Unsupervised learning is especially powerful when <em>labeling is expensive or impossible</em> — which is true for most real-world data. Much of the modern AI revolution (LLMs, diffusion models) is driven by unsupervised pre-training.
+              </div>
+            </div>
+          </div>
+          <div class="method-sidebar">
+            <div class="sidebar-card">
+              <h4>Quick Facts</h4>
+              <dl>
+                <dt>Data Required</dt><dd>Unlabeled data</dd>
+                <dt>Generalisation</dt><dd>✅ Yes</dd>
+                <dt>Feedback</dt><dd>❌ None</dd>
+                <dt>Tasks</dt><dd>Clustering, Compression</dd>
+                <dt>Classic use</dt><dd>Customer segmentation</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 10.3.5 SEMI-SUPERVISED ── -->
+    <section class="method-section" id="semisupervised">
+      <div class="container">
+        <div class="method-header">
+          <div class="method-badge method-badge-5">10.3.5</div>
+          <div>
+            <h2>Semi-supervised Learning</h2>
+            <p class="method-tagline">A powerful hybrid of labeled and unlabeled data</p>
+          </div>
+        </div>
+
+        <div class="method-body">
+          <div class="method-main">
+            <div class="callout callout-def">
+              <div class="callout-icon">📖</div>
+              <div class="callout-body">
+                <strong>Definition:</strong> A hybrid paradigm that uses a <em>small amount of labeled data</em> combined with a <em>large pool of unlabeled data</em> during training. The unlabeled data improves the model's understanding of the input distribution.
+              </div>
+            </div>
+
+            <div class="spectrum-bar">
+              <div class="spectrum-end spectrum-left">
+                <strong>Supervised</strong>
+                <span>All labeled</span>
+              </div>
+              <div class="spectrum-mid">
+                <div class="spectrum-arrow">←&nbsp;&nbsp;&nbsp;Semi-supervised&nbsp;&nbsp;&nbsp;→</div>
+                <div class="spectrum-fill"></div>
+              </div>
+              <div class="spectrum-end spectrum-right">
+                <strong>Unsupervised</strong>
+                <span>All unlabeled</span>
+              </div>
+            </div>
+
+            <h3>Why it matters</h3>
+            <p>In practice, collecting labeled data is <strong>expensive and time-consuming</strong> (think: manually annotating thousands of medical images). Semi-supervised learning leverages the cheap unlabeled data to significantly boost accuracy over a purely supervised approach.</p>
+
+            <div class="two-col" style="margin-top:1.5rem;">
+              <div class="info-card">
+                <h4>Common Techniques</h4>
+                <ul>
+                  <li><strong>Self-training</strong> — iteratively label confident predictions</li>
+                  <li><strong>Co-training</strong> — two models teach each other</li>
+                  <li><strong>Graph-based methods</strong> — label propagation</li>
+                  <li><strong>Generative models</strong> — learn joint distribution</li>
+                </ul>
+              </div>
+              <div class="info-card">
+                <h4>Real-World Applications</h4>
+                <ul>
+                  <li>🏥 Medical image classification</li>
+                  <li>📰 Text document categorisation</li>
+                  <li>🗣️ Speech recognition</li>
+                  <li>🌐 Web content classification</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="method-sidebar">
+            <div class="sidebar-card">
+              <h4>Quick Facts</h4>
+              <dl>
+                <dt>Data Required</dt><dd>Small labeled + large unlabeled</dd>
+                <dt>Generalisation</dt><dd>✅ Yes</dd>
+                <dt>Feedback</dt><dd>Partial (labeled only)</dd>
+                <dt>Key benefit</dt><dd>Reduces labeling cost</dd>
+                <dt>Classic use</dt><dd>Medical imaging</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 10.3.6 ENSEMBLE ── -->
+    <section class="method-section alt-bg" id="ensemble">
+      <div class="container">
+        <div class="method-header">
+          <div class="method-badge method-badge-6">10.3.6</div>
+          <div>
+            <h2>Ensemble Learning</h2>
+            <p class="method-tagline">Many weak learners, one strong result</p>
+          </div>
+        </div>
+
+        <div class="method-body">
+          <div class="method-main">
+            <div class="callout callout-def">
+              <div class="callout-icon">📖</div>
+              <div class="callout-body">
+                <strong>Definition:</strong> An ensemble combines the predictions of <em>multiple individually trained models</em> (called <strong>base learners</strong>) to produce a final prediction that is more accurate and robust than any single model alone.
+              </div>
+            </div>
+
+            <div class="ensemble-strategies">
+              <div class="ens-card">
+                <div class="ens-icon">🌲</div>
+                <h4>Bagging</h4>
+                <p>Train multiple models on <strong>random subsets</strong> of data, then aggregate (e.g. majority vote). Reduces variance.</p>
+                <div class="ens-example">e.g. <strong>Random Forest</strong></div>
+              </div>
+              <div class="ens-card">
+                <div class="ens-icon">🚀</div>
+                <h4>Boosting</h4>
+                <p>Train models <strong>sequentially</strong>; each focuses on the errors of its predecessor. Reduces bias.</p>
+                <div class="ens-example">e.g. <strong>XGBoost, AdaBoost</strong></div>
+              </div>
+              <div class="ens-card">
+                <div class="ens-icon">🗳️</div>
+                <h4>Stacking</h4>
+                <p>Use a <strong>meta-learner</strong> to learn how to best combine the outputs of base learners.</p>
+                <div class="ens-example">e.g. <strong>Blended ensembles</strong></div>
+              </div>
+            </div>
+
+            <div class="callout callout-tip">
+              <div class="callout-icon">💡</div>
+              <div class="callout-body">
+                <strong>Pro-Tip:</strong> "Diversity is strength." Ensembles work best when the base learners make <em>different kinds of errors</em>. Combining three models that all fail on the same examples gives little benefit; combining models that fail on <em>different</em> examples creates a powerful safety net.
+              </div>
+            </div>
+          </div>
+          <div class="method-sidebar">
+            <div class="sidebar-card">
+              <h4>Quick Facts</h4>
+              <dl>
+                <dt>Data Required</dt><dd>Training + validation set</dd>
+                <dt>Output</dt><dd>Aggregated prediction</dd>
+                <dt>Key benefit</dt><dd>Higher accuracy &amp; robustness</dd>
+                <dt>Classic use</dt><dd>Kaggle competition winners</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 10.3.7 DISCOVERY ── -->
+    <section class="method-section" id="discovery">
+      <div class="container">
+        <div class="method-header">
+          <div class="method-badge method-badge-7">10.3.7</div>
+          <div>
+            <h2>Discovery-based Learning</h2>
+            <p class="method-tagline">Inductively finding previously unknown, meaningful information</p>
+          </div>
+        </div>
+
+        <div class="method-body">
+          <div class="method-main">
+            <div class="callout callout-def">
+              <div class="callout-icon">📖</div>
+              <div class="callout-body">
+                <strong>Definition:</strong> Also called <strong>Knowledge Discovery in Databases (KDD)</strong> or <strong>Data Mining</strong>, this paradigm inductively extracts previously unknown, potentially useful, and ultimately understandable patterns from large datasets.
+              </div>
+            </div>
+
+            <h3>The KDD Process</h3>
+            <div class="kdd-flow">
+              <div class="kdd-step"><div class="kdd-icon">🗄️</div><div class="kdd-label">Raw Data</div></div>
+              <div class="kdd-arrow">▶</div>
+              <div class="kdd-step"><div class="kdd-icon">🧽</div><div class="kdd-label">Preprocessing</div></div>
+              <div class="kdd-arrow">▶</div>
+              <div class="kdd-step"><div class="kdd-icon">🔄</div><div class="kdd-label">Transformation</div></div>
+              <div class="kdd-arrow">▶</div>
+              <div class="kdd-step"><div class="kdd-icon">⛏️</div><div class="kdd-label">Data Mining</div></div>
+              <div class="kdd-arrow">▶</div>
+              <div class="kdd-step"><div class="kdd-icon">💡</div><div class="kdd-label">Knowledge</div></div>
+            </div>
+
+            <h3>Key Properties of Discovered Knowledge</h3>
+            <ul class="feature-list">
+              <li><span class="badge badge-purple">★</span> <strong>Previously Unknown</strong> — not an obvious or trivial relationship</li>
+              <li><span class="badge badge-purple">★</span> <strong>Valid</strong> — holds true with high confidence on the data</li>
+              <li><span class="badge badge-purple">★</span> <strong>Useful</strong> — actionable in a business or scientific context</li>
+              <li><span class="badge badge-purple">★</span> <strong>Understandable</strong> — interpretable by a human expert</li>
+            </ul>
+
+            <div class="callout callout-example">
+              <div class="callout-icon">🌍</div>
+              <div class="callout-body">
+                <strong>Classic Example:</strong> "Customers who buy diapers on Friday evenings also tend to buy beer." — A supermarket discovered this pattern in transaction logs. This counterintuitive association rule was only possible through automated data mining of millions of receipts.
+              </div>
+            </div>
+          </div>
+          <div class="method-sidebar">
+            <div class="sidebar-card">
+              <h4>Quick Facts</h4>
+              <dl>
+                <dt>Also known as</dt><dd>Data Mining, KDD</dd>
+                <dt>Data Required</dt><dd>Large databases</dd>
+                <dt>Generalisation</dt><dd>✅ Yes</dd>
+                <dt>Feedback</dt><dd>❌ None</dd>
+                <dt>Classic use</dt><dd>Market basket analysis</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 10.3.8 PROBLEM SOLVING ── -->
+    <section class="method-section alt-bg" id="problem-solving">
+      <div class="container">
+        <div class="method-header">
+          <div class="method-badge method-badge-8">10.3.8</div>
+          <div>
+            <h2>Learning by Problem Solving</h2>
+            <p class="method-tagline">Improving performance through task execution and optimisation</p>
+          </div>
+        </div>
+
+        <div class="method-body">
+          <div class="method-main">
+            <div class="callout callout-def">
+              <div class="callout-icon">📖</div>
+              <div class="callout-body">
+                <strong>Definition:</strong> The agent actively attempts to solve real tasks. Through repeated trial-and-error and optimisation of its action sequences, it improves its <em>problem-solving strategy</em> over time — leveraging experience from past attempts.
+              </div>
+            </div>
+
+            <h3>The Learn-by-Doing Loop</h3>
+            <div class="lbd-loop">
+              <div class="lbd-node lbd-top">
+                <div class="lbd-circle">🎯<br/><small>Problem Encountered</small></div>
+              </div>
+              <div class="lbd-row">
+                <div class="lbd-side lbd-left">
+                  <div class="lbd-circle lbd-small">🔄<br/><small>Apply Stored Strategy</small></div>
+                </div>
+                <div class="lbd-center-gap"></div>
+                <div class="lbd-side lbd-right">
+                  <div class="lbd-circle lbd-small">📊<br/><small>Evaluate Outcome</small></div>
+                </div>
+              </div>
+              <div class="lbd-node lbd-bot">
+                <div class="lbd-circle">✏️<br/><small>Update / Optimise Strategy</small></div>
+              </div>
+            </div>
+
+            <h3>Connection to Reinforcement Learning</h3>
+            <p>Learning by problem solving is the conceptual foundation of <strong>Reinforcement Learning (RL)</strong>. The agent receives a <em>reward signal</em> after each action and uses it to refine its <strong>policy</strong> — the mapping from states to actions.</p>
+
+            <div class="rl-concepts">
+              <div class="rl-chip"><span>🌍</span> Environment</div>
+              <div class="rl-chip"><span>🤖</span> Agent</div>
+              <div class="rl-chip"><span>📍</span> State</div>
+              <div class="rl-chip"><span>🎮</span> Action</div>
+              <div class="rl-chip"><span>🏆</span> Reward</div>
+              <div class="rl-chip"><span>📋</span> Policy</div>
+            </div>
+
+            <div class="callout callout-tip">
+              <div class="callout-icon">💡</div>
+              <div class="callout-body">
+                <strong>Pro-Tip:</strong> AlphaGo Zero learned to play Go at superhuman level <em>purely through self-play</em> — learning by problem solving with zero human game data. Starting from random play, it discovered strategies that human players had never conceived.
+              </div>
+            </div>
+          </div>
+          <div class="method-sidebar">
+            <div class="sidebar-card">
+              <h4>Quick Facts</h4>
+              <dl>
+                <dt>Also known as</dt><dd>Reinforcement Learning</dd>
+                <dt>Data Required</dt><dd>Task interactions</dd>
+                <dt>Feedback</dt><dd>Reward / penalty signal</dd>
+                <dt>Goal</dt><dd>Optimal action policy</dd>
+                <dt>Classic use</dt><dd>Game AI, Robotics</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  COMPARISON TABLE                          -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="content-section" id="comparison">
+      <div class="container">
+        <div class="section-label">Special Feature</div>
+        <h2 class="section-title">Knowledge Discovery vs. <span class="gradient-text">Machine Learning</span></h2>
+        <p class="section-intro">These two fields are often conflated, but they have distinct goals and processes. Here is a definitive side-by-side comparison.</p>
+
+        <div class="table-responsive">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Dimension</th>
+                <th class="col-kd">📂 Knowledge Discovery</th>
+                <th class="col-ml">🤖 Machine Learning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Primary Goal</strong></td>
+                <td>Extract previously <em>unknown</em> patterns from data</td>
+                <td>Improve <em>predictive performance</em> on a task</td>
+              </tr>
+              <tr>
+                <td><strong>Output</strong></td>
+                <td>Understandable rules and associations</td>
+                <td>A trained model (can be a black box)</td>
+              </tr>
+              <tr>
+                <td><strong>Human Interpretability</strong></td>
+                <td>⭐⭐⭐⭐⭐ Highest priority</td>
+                <td>⭐⭐ Often secondary to accuracy</td>
+              </tr>
+              <tr>
+                <td><strong>Feedback Required</strong></td>
+                <td>❌ Typically unsupervised</td>
+                <td>✅ Usually requires labels</td>
+              </tr>
+              <tr>
+                <td><strong>Data Volume</strong></td>
+                <td>Very large databases (petabyte scale)</td>
+                <td>Varies — can be small (few-shot learning)</td>
+              </tr>
+              <tr>
+                <td><strong>Primary Techniques</strong></td>
+                <td>Association Rules, Clustering, Anomaly Detection</td>
+                <td>Neural Networks, SVMs, Decision Trees</td>
+              </tr>
+              <tr>
+                <td><strong>Classic Example</strong></td>
+                <td>Diaper-beer association in supermarkets</td>
+                <td>Image recognition via CNNs</td>
+              </tr>
+              <tr>
+                <td><strong>Metrics</strong></td>
+                <td>Support, Confidence, Lift</td>
+                <td>Accuracy, F1-score, AUC-ROC</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-note" style="margin-top:2rem;">
+          <div class="callout-icon">🔗</div>
+          <div class="callout-body">
+            <strong>Overlap:</strong> The two fields are <em>complementary</em>, not competing. ML algorithms are often used as the data-mining engine within a KDD pipeline. The distinction lies in the <em>intent</em> — discovering new knowledge vs. optimising a prediction function.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  REAL-WORLD APPLICATIONS SIDEBAR           -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="content-section alt-bg" id="applications">
+      <div class="container">
+        <div class="section-label">Real-World Application</div>
+        <h2 class="section-title">Bank Credit Risk: <span class="gradient-text">The Ram Example</span></h2>
+        <p class="section-intro">This case study illustrates how ML predictions are made in a high-stakes financial setting.</p>
+
+        <div class="case-study">
+          <div class="case-scenario">
+            <div class="case-avatar">👤</div>
+            <div class="case-story">
+              <h3>The Scenario</h3>
+              <p><strong>Ram</strong> applies for a bank loan. The bank's ML system must decide: will Ram default on his loan repayment? The system doesn't know Ram personally — it must infer from patterns seen in thousands of historical loan applications.</p>
+            </div>
+          </div>
+
+          <div class="features-grid">
+            <h3>Input Parameters (Features)</h3>
+            <div class="feature-cards">
+              <div class="feat-card">
+                <div class="feat-icon">📅</div>
+                <div class="feat-name">Age</div>
+                <div class="feat-val fc-mid">32 years</div>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">💼</div>
+                <div class="feat-name">Employment Status</div>
+                <div class="feat-val fc-good">Employed</div>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">💰</div>
+                <div class="feat-name">Annual Income</div>
+                <div class="feat-val fc-good">₹6,00,000</div>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">📊</div>
+                <div class="feat-name">Credit Score</div>
+                <div class="feat-val fc-poor">580 (Fair)</div>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">🏦</div>
+                <div class="feat-name">Existing Debts</div>
+                <div class="feat-val fc-poor">High</div>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">📋</div>
+                <div class="feat-name">Credit History</div>
+                <div class="feat-val fc-mid">Patchy (2 late payments)</div>
+              </div>
+            </div>
+
+            <div class="model-output">
+              <div class="model-box">
+                <div class="model-label">ML Model Output</div>
+                <div class="risk-meter">
+                  <div class="risk-fill" style="width: 67%"></div>
+                </div>
+                <div class="risk-label">Default Risk: <strong>67% — High Risk</strong></div>
+                <div class="model-verdict verdict-decline">⚠️ Loan Application: Declined</div>
+              </div>
+            </div>
+
+            <div class="callout callout-note">
+              <div class="callout-icon">🧠</div>
+              <div class="callout-body">
+                <strong>Key Insight:</strong> The model didn't "know" Ram would default. It recognised that Ram's <em>feature profile</em> closely matches historical profiles of customers who <em>did</em> default. This is the essence of supervised classification: learning from labeled historical data to make informed predictions on new applicants.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  MPI FRAMEWORK                             -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="content-section" id="mpi">
+      <div class="container">
+        <div class="section-label">Framework</div>
+        <h2 class="section-title">Multi-perspective Integrated Intelligence <span class="gradient-text">(MPI)</span></h2>
+        <p class="section-intro">MPI is a theoretical framework that describes how a truly intelligent system integrates <em>multiple cognitive perspectives</em> — learning, reasoning, and problem-solving — rather than relying on a single, monolithic approach.</p>
+
+        <div class="mpi-container">
+          <div class="mpi-analogy">
+            <h3>💼 The Job Application Analogy</h3>
+            <div class="ja-flow">
+              <div class="ja-step">
+                <div class="ja-icon">📄</div>
+                <div class="ja-text">
+                  <strong>Candidate applies for a job</strong>
+                  <p>Raw input data — CV, cover letter, interview performance.</p>
+                </div>
+              </div>
+              <div class="ja-step">
+                <div class="ja-icon">🔍</div>
+                <div class="ja-text">
+                  <strong>HR evaluates the candidate</strong>
+                  <p>The system <em>observes</em> and scores multiple dimensions: skills, experience, cultural fit.</p>
+                </div>
+              </div>
+              <div class="ja-step">
+                <div class="ja-icon">📩</div>
+                <div class="ja-text">
+                  <strong>Candidate receives feedback</strong>
+                  <p>A rejection letter arrives — but it contains specific, actionable feedback on what was lacking.</p>
+                </div>
+              </div>
+              <div class="ja-step">
+                <div class="ja-icon">📚</div>
+                <div class="ja-text">
+                  <strong>Candidate learns &amp; adapts</strong>
+                  <p>The candidate improves their skills, refines their CV, and applies again — now with higher success probability.</p>
+                </div>
+              </div>
+              <div class="ja-step ja-success">
+                <div class="ja-icon">✅</div>
+                <div class="ja-text">
+                  <strong>Eventual success through integrated intelligence</strong>
+                  <p>The iterative feedback loop — observe, reason, learn, act — mirrors how MPI agents improve.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mpi-pillars">
+            <h3>The Three MPI Pillars</h3>
+            <div class="pillar-row">
+              <div class="pillar">
+                <div class="pillar-icon">👓</div>
+                <h4>Perceptual Intelligence</h4>
+                <p>The ability to observe and interpret raw data inputs from the environment with high fidelity.</p>
+              </div>
+              <div class="pillar-plus">+</div>
+              <div class="pillar">
+                <div class="pillar-icon">🧠</div>
+                <h4>Cognitive Intelligence</h4>
+                <p>Reasoning, pattern recognition, and knowledge integration across domains and time steps.</p>
+              </div>
+              <div class="pillar-plus">+</div>
+              <div class="pillar">
+                <div class="pillar-icon">⚡</div>
+                <h4>Adaptive Intelligence</h4>
+                <p>Learning from feedback and dynamically updating strategies to improve future performance.</p>
+              </div>
+            </div>
+            <div class="pillar-result">
+              <strong>= Multi-perspective Integrated Intelligence (MPI)</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-tip">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
+            <strong>Pro-Tip:</strong> MPI is not just a theoretical construct — it is the design philosophy behind modern AI systems. A large language model demonstrates MPI by simultaneously leveraging perceptual pattern matching (token prediction), cognitive reasoning (chain-of-thought), and adaptation (RLHF fine-tuning).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  SELF-TEST QUIZ                            -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="content-section alt-bg" id="quiz">
+      <div class="container">
+        <div class="section-label">Self-Assessment</div>
+        <h2 class="section-title">Test Your <span class="gradient-text">Understanding</span></h2>
+        <p class="section-intro">Challenge yourself with these seminar-style questions. Click an answer to see the explanation.</p>
+
+        <div class="quiz-container" id="quiz-container">
+          <!-- Questions injected by JS -->
+        </div>
+
+        <div class="quiz-score" id="quiz-score" style="display:none;">
+          <div class="score-inner">
+            <div class="score-emoji" id="score-emoji">🎉</div>
+            <div class="score-text" id="score-text"></div>
+            <button class="btn btn-primary" id="retake-btn">Retake Quiz</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="brand-icon">🧠</span>
+          <span>AI Chapter 10 — Study Guide</span>
+        </div>
+        <div class="footer-info">
+          <p>Based on <em>Artificial Intelligence: Chapter 10 — Learning</em></p>
+          <p>Sections 10.1 through 10.3.8 · Academic Study Material</p>
+        </div>
+        <div class="footer-badge">
+          Assembled for Seminar Preparation 🎓
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
